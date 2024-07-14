@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\APIController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PayController;
 use App\Http\Controllers\EcoleController;
 use App\Http\Controllers\BanqueController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\AdminController;
+
+use App\Http\Controllers\Admin\EcolesController;
+use App\Http\Controllers\Admin\BanquesController;
 
 Route::get('/', function () {
     return view('pay.index');
@@ -20,6 +23,44 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::view('/Administration','administration.administration');
+
+/*      Admin     */
+
+Route::group(['namespace' => 'Admin'], function () {
+     
+    Route::get('/admin',[AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('admin');
+
+    Route::group(['prefix' => 'ecole'], function () {
+        
+        Route::get('/addEcole',[EcolesController::class,'addEcole'])->name("add.Ecole");
+        Route::get('/showAll',[EcolesController::class,'showAllEcole'])->name("show.all.Ecole");
+        Route::post('/saveEcole',[EcolesController::class,'save'])->name('save');
+        Route::get('/edit/{id}',[EcolesController::class,'editEcole'])->name('editEcole');
+        Route::put('/update/{id}',[EcolesController::class,'updateEcole'])->name('updateEcole');
+        Route::get('/delete/{id}',[EcolesController::class,'deleteEcole'])->name('deleteEcole');
+
+
+    });
+
+    Route::group(['prefix' => 'bank'], function () {
+        
+        Route::get('/addBanque',[BanquesController::class,'addBank'])->name("add.bank");
+        Route::get('/showAll',[BanquesController::class,'showAllBank'])->name("show.all.bank");
+
+        Route::post('/saveBank',[BanquesController::class,'saveBank'])->name("save.bank");
+        Route::get('edit/{id}',[BanquesController::class,'editBank'])->name("edit.bank");
+        Route::get('delete/{id}',[BanquesController::class,'deleteBank'])->name("delete.bank");
+        Route::post('update',[BanquesController::class,'updateBank'])->name("update.bank"); 
+    });
+
+    
+
+
+});
+
+
 
 require __DIR__.'/auth.php';
 Route::get('/pay/home',[PayController::class,'home'])->name('pay.index');
