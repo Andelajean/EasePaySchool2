@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 
 use App\Http\Controllers\Admin\EcolesController;
 use App\Http\Controllers\Admin\BanquesController;
+use App\Http\Controllers\Admin\ContactsController;
 
 Route::get('/', function () {
     return view('pay.index');
@@ -54,6 +55,11 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('delete/{id}',[BanquesController::class,'deleteBank'])->name("delete.bank");
         Route::post('update',[BanquesController::class,'updateBank'])->name("update.bank"); 
     });
+
+    Route::group(['prefix' => 'contact'], function () {
+        Route::get('/showAll',[ContactsController::class,'showAllContact'])->name("show.all.Contact");
+    });
+
 
     
 

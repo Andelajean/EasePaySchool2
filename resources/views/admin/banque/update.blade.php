@@ -10,7 +10,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
           
-            <h1>modifier un étudiant</h1>
+            <h1>modifier les informations d'une banque</h1>
           
         </div>
       </div><!-- /.container-fluid -->
@@ -23,7 +23,7 @@
        
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Modifier un étudiant</h3>
+            <h3 class="card-title">Modifier une banque</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -40,57 +40,55 @@
 
               <div class="col-md-6">
                  <div class="form-group">
-                 <form  action="{{ route("update.student") }}" method="POST" >
+                 <form  action="{{ route("update.bank") }}" method="POST" >
                   @csrf
-                  @error('nom')
+              
+                 @error('nom')
                   <div class="alert alert-danger "> {{ $message }} </div>
-                 @enderror
-                
+                 @enderror 
+                 
                  @if (Session::has('error'))
                      <div class="alert alert-danger"> {{ Session::get('error') }} </div>
                  @endif
                 
 
-                  <label>CNE</label>
-                  <input type="text" name="cne" class="form-control" value="{{ $etudiant->cne }}">
+                
+                  <label>Nom</label>
+                  <input type="text" name="nom" class="form-control" value="{{ $banques->nom }}">
                  </div>
                 <!-- /.form-group -->
                 <div class="form-group">
-                    <label>Nom</label>
-                    <input type="text" name="prenom" class="form-control" value="{{ $etudiant->nom_etu }}">
+                    <label>Prenom</label>
+                    <input type="text" name="prenom" class="form-control" value="{{ $banques->prenom }}">
                   </div>
               </div>
 
               <div class="col-md-6">
                  <div class="form-group">
-                  <label>Prenom</label>
-                  <input type="text" name="nom" class="form-control " value="{{ $etudiant->prenom_etu }}">
+                  <label>Email</label>
+                  <input type="text" name="nom" class="form-control " value="{{ $banques->email }}">
                  </div>
                 <!-- /.form-group -->
                   <div class="form-group">
-                    <label>Phone</label>
-                    <input type="text" name="phone" class="form-control " value="{{ $etudiant->phone_etu }}">
+                    <label>Numero de compte</label>
+                    <input type="text" name="bank" class="form-control " value="{{ $banques->bank }}">
                   </div>
                 <!-- /.form-group -->
               </div>
               <div class="col-md-6">
               <div class="form-group">
-                <label>Filiere</label>
-                <select class="form-control select2" style="width: 100%;" name="filiere">
-                    @isset($filieres)
-                    @foreach ($filieres as $filiere)
-                  
-                  <option value="{{ $filiere->id }}" @if ($filiere->id == $etudiant->id_filiere) selected @endif>{{ $filiere->nom_filiere }}</option>
-  
-                    @endforeach
-                    @endisset
-                  </select>
+                <label>Telephone</label>
+                <input type="text" name="telephone" class="form-control " value="{{ $banques->telephone }}">
+              </div>
+              <div class="form-group">
+                <label>Mot de passe :</label>
+                <input type="text" name="pwd" class="form-control " value="">
               </div>
 
               </div>
               </div>
               <!-- /.col -->    
-                <input type="hidden" name="id" value="{{ $etudiant->id }}">
+                <input type="hidden" name="id" value="{{ $banques->id }}">
                 <input type="submit" value="Modifier" class="btn btn-primary">  
             
           </form>      

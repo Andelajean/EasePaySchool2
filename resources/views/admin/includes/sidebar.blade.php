@@ -175,7 +175,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
-              Listes Paiements 
+               Paiements Par Ecole
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -192,6 +192,13 @@
            
             
           </ul>
+        </li>
+
+        <li class="nav-item">
+        <a href="{{ route("show.all.Contact") }}" class="nav-link"> 
+                <i class="far fa-circle nav-icon"></i>  
+                <p>Personnes Contactees</p>
+       </a>
         </li>
        
 

@@ -80,7 +80,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                         <label>Telephone:</label>
-                        <input type="text" name="tel" class="form-control">
+                        <input type="text" name="telephone" class="form-control">
                       </div>
                       <div class="form-group">
                         <label>Mot de passe:</label>
